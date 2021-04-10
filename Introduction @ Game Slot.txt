@@ -1,0 +1,525 @@
+import Html exposing (..)
+import Html.Attributes as HA
+myShapes model =
+   case model.state of
+        MainPage  ->
+            [ backGroundColor
+            , GraphicSVG.text "Introduction To Logarithm"
+                  |> size 10
+                  |> centered
+                  |> bold
+                  |> filled white
+                  |> move (0,30)
+            , transButton 50 15 -2 lightYellow 0.7 MainToLogDesrip "Log Description" |> move (0,0)
+            , transButton 50 15 -2 lightYellow 0.7 MainToRules "Log Rules" |> move (0,-20)
+            , transButton 50 15 -2 lightYellow 0.7 MainToExample "Examples" |> move (0,-40)
+            ]
+        LogDesrip  ->
+            [ backGroundColor
+              , GraphicSVG.text "What is Logarithm"
+                  |> size 10
+                  |> centered
+                  |> bold
+                  |> filled white
+                  |> move (0,36)
+              , transButton 38 10 -2 lightYellow 0.5 LogDesripToMain "Menu" |> move (-50,55)
+              , transButton 38 10 -2 lightYellow 0.5 LogDesripToRules "Rules" |> move (-7,55)
+              , transButton 38 10 -2 lightYellow 0.5 LogDesripToExamples "Examples" |> move (35,55)
+              ,group
+                  [ roundedRect 180 60 2 |> filled white |> move (0,-5) 
+                  , roundedRect 180 60 2 |> outlined (solid 0.5) black |> move (0,-5)
+                  ,GraphicSVG.text "The logarithm of a given number x is the power  to which"
+                      |> size 6
+                      |> centered
+                      |> bold
+                      |> filled black
+                      |> move (0,13)
+                  , GraphicSVG.text "the given base must be raised in order to produce x."
+                      |> size 6
+                      |> centered
+                      |> bold
+                      |> filled black
+                      |> move (0,4)
+                  , GraphicSVG.text "In the example blow, x = 3 and the base = 2"
+                      |> size 6
+                      |> centered
+                      |> bold
+                      |> filled black
+                      |> move (0,-5)
+                  ,html 190 35
+                    ( Html.img [HA.width 190, HA.height 35
+                    , HA.align "centered"
+                    , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/description.png"]
+                    []
+                    )|> move(-95,-18) |> scale 0.6
+                  ]
+
+                      
+                    
+              ]
+        ListOfRule  ->
+            [ backGroundColor
+              , GraphicSVG.text "List Of Rules"
+                  |> size 10
+                  |> centered
+                  |> bold
+                  |> filled white
+                  |> move (0,36)
+              , transButton 38 10 -2 lightYellow 0.5 RulesToMain "Menu" |> move (-50,55)
+              , transButton 38 10 -2 lightYellow 0.5 RulesToLogDescrip "Description" |> move (-7,55)
+              , transButton 38 10 -2 lightYellow 0.5 RulesToExample "Examples" |> move (35,55)
+              , group
+                  [ roundedRect 135 60 2 |> filled white |> move (0,-5) 
+                  , roundedRect 135 60 2 |> outlined (solid 0.5) black |> move (0,-5)
+                  , html 190 80
+                    ( Html.img [HA.width 190, HA.height 80
+                    , HA.align "centered"
+                    , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/listOfRules.png"]
+                    []
+                    )|> move(-95,32) |> scale 0.7
+                    
+                  ]
+            ]
+        ExampleQuestion  ->
+             [ backGroundColor
+              , GraphicSVG.text "Example Question"
+                  |> size 10
+                  |> centered
+                  |> bold
+                  |> filled white
+                  |> move (0,36)
+              , transButton 38 10 -2 lightYellow 0.5 ExampleToMain "Menu" |> move (-50,55)
+              , transButton 38 10 -2 lightYellow 0.5 ExampleToLogDescrip "Description" |> move (-7,55)
+              , transButton 38 10 -2 lightYellow 0.5 ExampleToRules "Rules" |> move (35,55)
+              , 
+              case model.questionState of
+                 Question1 -> group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 lightGreen 0.5 Question1To2 "Next" |> move (65,39)
+                                , GraphicSVG.text "Product Rule Example #1"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,13)
+                                 ,html 230 50
+                                   ( Html.img [HA.width 230, HA.height 45
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/ex1rule1.png"]
+                                        []
+                                          )
+                                      |> move (-120,25) |> scale 0.5
+                                , GraphicSVG.text "Product Rule Example #2"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,-15)
+                               ,html 300 50
+                                   ( Html.img [HA.width 300, HA.height 40
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/rule1ex2.png"]
+                                        []
+                                          )
+                                      |> move (-150,-50) |> scale 0.5
+                                ]
+                 Question2 -> group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question2To1 "Previous" |> move (-65,39)
+                                , transButton 38 10 -2 lightGreen 0.5 Question2To3 "Next" |> move (65,39)
+                                , GraphicSVG.text "Quotient Rule Example #1 "
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-50,13)
+                               ,html 185 50
+                                  ( Html.img [HA.width 185, HA.height 40
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/rule2ex1.png"]
+                                        []
+                                          )
+                                      |> move (-99,15) |> scale 0.6
+                               , GraphicSVG.text "Quotient Rule Example #2"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-50,-25)
+                               , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 40
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/rule2ex2.png"]
+                                        []
+                                          )
+                                      |> move (-99,-55) |> scale 0.5
+                                ]
+        
+
+                 Question3->group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question3To2 "Previous" |> move (-65,39)
+                                , transButton 38 10 -2 lightGreen 0.5 Question3To4 "Next" |> move (65,39)
+                                , GraphicSVG.text "Power Rule Example #1"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,13)
+                                , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 45
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/rule2ex1.png"]
+                                        []
+                                          )
+                                      |> move (-99,15) |> scale 0.6
+                                , GraphicSVG.text "Power Rule Example #2"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,-20)
+                                , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 45
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/ex2rule3.png"]
+                                        []
+                                          )
+                                      |> move (-99,-38) |> scale 0.6
+                                ]
+                 Question4->
+                          group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question4To3 "Previous" |> move (-65,39)
+                                , transButton 38 10 -2 lightGreen 0.5 Question4To5 "Next" |> move (65,39)
+                                , GraphicSVG.text "Change of Base Rule Example #1"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-45,13)
+                                , html 200 35
+                                  ( Html.img [HA.width 200, HA.height 38
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/ex1rule4.png"]
+                                        []
+                                          )
+                                      |> move (-99,15) |> scale 0.6
+                                , GraphicSVG.text "Change of Base Rule Example #2"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-45,-20)
+                                , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 45
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/rule4ex2.png"]
+                                        []
+                                          )
+                                      |> move (-99,-38) |> scale 0.6
+                                ]
+                 Question5->
+                          group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question5To4 "Previous" |> move (-65,39)
+                                , transButton 38 10 -2 lightGreen 0.5 Question5To6 "Next" |> move (65,39)
+                                , GraphicSVG.text "Equality Rule Example #1"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,13)
+                                , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 40
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/ex1rule5.png"]
+                                        []
+                                          )
+                                      |> move (-99,15) |> scale 0.6
+                                , GraphicSVG.text "Equality Rule Example #2"
+                                    |> size 5
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-55,-20)
+                                , html 200 50
+                                  ( Html.img [HA.width 200, HA.height 50
+                                        , HA.align "centered"
+                                        , HA.src "https://raw.githubusercontent.com/SPIDEYH/MathIntroduction/main/ex2rule5.png"]
+                                        []
+                                          )
+                                      |> move (-99,-35) |> scale 0.6
+                                ]
+                 Question6->
+                       group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question6To5 "Previous" |> move (-65,39)
+                                , transButton 38 10 -2 lightGreen 0.5 Question6To7 "Next" |> move (65,39)
+                                , GraphicSVG.text "Application Question #1"
+                                    |> size 6
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-45,13)
+                                 ,html 180 60
+                                   ( Html.img [HA.width 90, HA.height 50
+                                        , HA.align "centered"
+                                        , HA.src "https://github.com/SPIDEYH/MathIntroduction/blob/main/Example1%20(1).png?raw=true"]
+                                        []
+                                          )
+                                      |> move (-46,3)
+                                ]
+                 Question7->
+                     group
+                                [ roundedRect 180 75 2 |> filled white |> move (0,-14) 
+                                , roundedRect 180 75 2 |> outlined (solid 0.5) black |> move (0,-14)
+                                , transButton 38 10 -2 hotPink 0.5 Question7To6 "Previous" |> move (-65,39)
+                                , GraphicSVG.text "Application Question #2 "
+                                    |> size 6
+                                    |> centered
+                                    |> bold
+                                    |> filled black
+                                    |> move (-45,13)
+                               ,html 180 60
+                                  ( Html.img [HA.width 55, HA.height 50
+                                        , HA.align "centered"
+                                        , HA.src "https://github.com/SPIDEYH/MathIntroduction/blob/main/Example1%20(2).png?raw=true"]
+                                        []
+                                          )
+                                      |> move (-20,4)
+                                ]
+
+            ]
+backGroundColor = square 1000 |> filled lightBlue
+            
+          
+
+type Msg = Tick Float GetKeyState
+         | MainToLogDesrip
+         | MainToRules
+         | MainToExample
+         | LogDesripToMain
+         | LogDesripToRules
+         | LogDesripToExamples
+         | RulesToMain
+         | RulesToLogDescrip
+         | RulesToExample
+         | ExampleToMain
+         | ExampleToRules
+         | ExampleToLogDescrip
+         | Question1To2
+         | Question2To1
+         | Question2To3
+         | Question3To2
+         | Question3To4
+         | Question4To3
+         | Question4To5
+         | Question5To4
+         | Question5To6
+         | Question6To5
+         | Question6To7
+         | Question7To6
+
+         
+type QuestionState = Question1
+                   | Question2
+                   | Question3
+                   | Question4
+                   | Question5
+                   | Question6
+                   | Question7
+                 
+                   
+
+
+type State = MainPage 
+           | LogDesrip 
+           | ListOfRule 
+           | ExampleQuestion
+      
+
+update msg model =
+    case msg of
+        Tick t _ ->
+            { model | time = t }
+        MainToLogDesrip ->
+            case model.state of
+                MainPage  ->
+                    { model | state = LogDesrip  }
+                otherwise ->
+                    model
+        MainToRules ->
+            case model.state of
+                MainPage  ->
+                    { model | state = ListOfRule  }
+                otherwise ->
+                    model
+        MainToExample ->
+            case model.state of
+                MainPage  ->
+                    { model | state = ExampleQuestion   }
+                otherwise ->
+                    model
+        LogDesripToMain ->
+            case model.state of
+                LogDesrip   ->
+                    { model | state = MainPage  }
+                otherwise ->
+                    model
+        LogDesripToRules ->
+            case model.state of
+                LogDesrip   ->
+                    { model | state = ListOfRule  }
+                otherwise ->
+                    model
+        LogDesripToExamples ->
+            case model.state of
+                LogDesrip   ->
+                    { model | state = ExampleQuestion  }
+                otherwise ->
+                    model
+        RulesToMain  ->
+            case model.state of
+                ListOfRule   ->
+                    { model | state = MainPage   }
+                otherwise ->
+                    model
+        RulesToLogDescrip ->
+            case model.state of
+                ListOfRule   ->
+                    { model | state = LogDesrip   }
+                otherwise ->
+                    model
+        RulesToExample ->
+            case model.state of
+                ListOfRule   ->
+                    { model | state = ExampleQuestion   }
+                otherwise ->
+                    model
+        ExampleToMain ->
+            case model.state of
+                ExampleQuestion   ->
+                    { model | state = MainPage   }
+                otherwise ->
+                    model
+        ExampleToRules ->
+            case model.state of
+                ExampleQuestion   ->
+                    { model | state = ListOfRule   }
+                otherwise ->
+                    model
+        ExampleToLogDescrip ->
+            case model.state of
+                ExampleQuestion   ->
+                    { model | state = LogDesrip  }
+                otherwise ->
+                    model
+        Question1To2 ->
+            case model.questionState of
+                Question1 ->
+                    { model | questionState = Question2  }
+                otherwise ->
+                    model
+        Question2To1 ->
+            case model.questionState of
+                Question2 ->
+                    { model | questionState = Question1  }
+                otherwise ->
+                    model
+        Question2To3 ->
+            case model.questionState of
+                Question2 ->
+                    { model | questionState = Question3  }
+                otherwise ->
+                    model
+        Question3To2 ->
+            case model.questionState of
+                Question3 ->
+                    { model | questionState = Question2  }
+                otherwise ->
+                    model
+        Question3To4 ->
+            case model.questionState of
+                Question3 ->
+                    { model | questionState = Question4  }
+                otherwise ->
+                    model
+        Question4To3 ->
+            case model.questionState of
+                Question4 ->
+                    { model | questionState = Question3  }
+                otherwise ->
+                    model
+        Question4To5 ->
+            case model.questionState of
+                Question4 ->
+                    { model | questionState = Question5  }
+                otherwise ->
+                    model
+        Question5To4 ->
+            case model.questionState of
+                Question5 ->
+                    { model | questionState = Question4  }
+                otherwise ->
+                    model
+        Question5To6 ->
+             case model.questionState of
+                Question5 ->
+                    { model | questionState = Question6  }
+                otherwise ->
+                    model
+        Question6To5 ->
+             case model.questionState of
+                Question6 ->
+                    { model | questionState = Question5  }
+                otherwise ->
+                   model
+        Question6To7 ->
+             case model.questionState of
+                Question6 ->
+                    { model | questionState = Question7  }
+                otherwise ->
+                   model
+        Question7To6 -> 
+              case model.questionState of
+                Question7 ->
+                    { model | questionState = Question6  }
+                otherwise ->
+                   model
+transButton sizeX sizeY posText color sizeOfoutLine msg txt = 
+        group [roundedRect sizeX sizeY 2
+                          |> filled color
+              ,roundedRect sizeX sizeY 2
+                          |> outlined (solid sizeOfoutLine) black
+              ,GraphicSVG.text txt
+                   |> centered
+                   |> bold
+                   |> size 6
+                   |> filled black
+                   |> move (0,posText)
+               
+               ] |> notifyTap msg
+
+
+
+
+type alias Model =
+    { time : Float
+    , state : State
+    , questionState : QuestionState
+    }
+
+init : Model
+init = { time = 0 
+       , state = MainPage
+       , questionState = Question1
+       }
+    
+    
